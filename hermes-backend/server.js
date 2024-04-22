@@ -6,6 +6,7 @@ const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+require('dotenv').config();
 
 // instanciamos express
 const app = express();
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
 
 
 app.use(cors({
-  origin: 'http://localhost:3000', // El origen de tu aplicación React
+  origin: 'https://proyecto-hermes-app.netlify.app', // El origen de tu aplicación React
   methods: 'GET,POST', 
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -30,11 +31,11 @@ app.use(bodyParser.json());
 
 // configuracion conexion a base de datos MySQL
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'hermes',
-  database: 'hermes_db',
-  port: 3307
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT
 });
 
 // conectamos a base de datos
