@@ -150,7 +150,7 @@ function Dashboard() {
 
       <Col xs={12} md={6} lg={5} xxl={4}>
           <div className="position-relative">
-            <DonutChart ingresos={{ total_ingresos: mostrarTotal(ingresos) }} gastos={{ total_gastos: mostrarTotal(gastos) }} />
+          <DonutChart ingresos={mostrarTotal(ingresos)} gastos={mostrarTotal(gastos)} />
           </div>
         </Col>
 
