@@ -13,7 +13,7 @@ const DonutChart = ({ ingresos, gastos }) => {
         labels: ['Gastos', 'Ingresos'],
         datasets: [{
           label: 'Gastos' | 'Ingresos',
-          data: [gastos.total_gastos, ingresos.total_ingresos],
+          data: [gastos, ingresos],
           backgroundColor: [
             'rgba(255, 99, 132, 0.3)',
             'rgba(75, 192, 192, 0.3)',
