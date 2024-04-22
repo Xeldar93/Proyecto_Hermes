@@ -5,7 +5,7 @@ export async function loginUser(credentials) {
     // Imprime en la consola los datos enviados al servidor para iniciar sesión
     console.log('Datos enviados al servidor para iniciar sesión:', credentials);
     // Realiza una solicitud POST al endpoint '/login' del servidor
-    const response = await fetch('http://localhost:3001/login', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/login', {
       mode: 'cors',
       credentials: 'include',
       method: 'POST',
@@ -43,7 +43,7 @@ export async function registerUser(userData) {
     // Imprime en la consola los datos enviados al servidor para registrar usuario
     console.log('Datos enviados al servidor para registrar usuario:', userData);
     // Realiza una solicitud POST al endpoint '/registro' del servidor
-    const response = await fetch('http://localhost:3001/registro', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/registro', {
       mode: 'cors',
       credentials: 'include',
       method: 'POST',
@@ -70,7 +70,7 @@ export async function registerUser(userData) {
 export async function obtenerDatosActualizados(token) {
   try {
     // Realiza una solicitud GET al endpoint '/ingresos-y-gastos' del servidor
-    const response = await fetch('http://localhost:3001/ingresos-y-gastos', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/ingresos-y-gastos', {
       mode: 'cors',
       credentials: 'include',
       method: 'GET',
@@ -118,7 +118,7 @@ export async function agregarDatosCaja(token, fecha, ingresoEfectivo, ingresoTar
     console.log('Datos enviados al servidor para agregar datos a la caja:', dataToSend);
     
     // Realiza una solicitud POST al endpoint '/agregar-datos-caja' del servidor
-    const response = await fetch('http://localhost:3001/agregar-datos-caja', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/agregar-datos-caja', {
       mode: 'cors',
       credentials: 'include',
       method: 'POST',
@@ -160,7 +160,7 @@ export async function agregarFactura(token, id_proveedor, id_usuario, fecha, tot
     console.log('Datos enviados al servidor para agregar factura', dataToSend);
 
     // Realiza una solicitud POST al endpoint '/facturas' del servidor
-    const response = await fetch('http://localhost:3001/facturas', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/facturas', {
       mode: 'cors',
       credentials: 'include',
       method: 'POST',
@@ -189,7 +189,7 @@ export async function agregarFactura(token, id_proveedor, id_usuario, fecha, tot
 export async function obtenerProveedores(token) {
   try {
     // Realiza una solicitud GET al endpoint '/proveedores' del servidor
-    const response = await fetch('http://localhost:3001/proveedores', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/proveedores', {
       mode: 'cors',
       credentials: 'include',
       method: 'GET',
@@ -230,7 +230,7 @@ export async function agregarProveedor(token, nombre, direccion, telefono, email
     console.log('Datos enviados al servidor para agregar proveedor', dataToSend);
 
     // Realiza una solicitud POST al endpoint '/proveedores' del servidor
-    const response = await fetch('http://localhost:3001/proveedores', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/proveedores', {
       mode: 'cors',
       credentials: 'include',
       method: 'POST',
@@ -258,7 +258,7 @@ export async function agregarProveedor(token, nombre, direccion, telefono, email
 // Funcion para obtener datos de cajas
 export async function obtenerDatosCajas(token) {
   try {
-    const response = await fetch('http://localhost:3001/cajas', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/cajas', {
       mode: 'cors',
       credentials: 'include',
       method: 'GET',
@@ -300,7 +300,7 @@ export async function obtenerDatosCajas(token) {
 // Funcion para obtener datos de facturas
 export async function obtenerDatosFacturas(token) {
   try {
-    const response = await fetch('http://localhost:3001/facturas', {
+    const response = await fetch('https://proyecto-hermes-app.netlify.app/facturas', {
       mode: 'cors',
       credentials: 'include',
       method: 'GET',
