@@ -78,20 +78,16 @@ function Dashboard() {
   };
 
   // Muestra el total de ingresos o gastos
-const mostrarTotal = (items) => {
-  if (items.length > 0) {
-    // Ordenamos los elementos por fecha en orden decreciente
-    const sortedItems = [...items].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-    // Seleccionamos el primer elemento (el más reciente)
-    const mostRecentItem = sortedItems[0];
-    // Formateamos la fecha en formato español "es-ES"
-    const fechaFormateada = new Date(mostRecentItem.fecha).toLocaleDateString('es-ES');
-    // Retornamos el total del mes más reciente y la fecha formateada
-    return { total: mostRecentItem.total_ingresos || mostRecentItem.total_gastos || 0, fecha: fechaFormateada };
-  }
-  return { total: 0, fecha: '' };
-};
-
+  const mostrarTotal = (items) => {
+    if (items.length > 0) {
+      // Ordenamos los elementos por fecha en orden decreciente
+      const sortedItems = [...items].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+      // Seleccionamos el primer elemento (el más reciente)
+      const mostRecentItem = sortedItems[0];
+      return mostRecentItem.total_ingresos || mostRecentItem.total_gastos || 0;
+    }
+    return 0;
+  };
   
 
   useEffect(() => {
