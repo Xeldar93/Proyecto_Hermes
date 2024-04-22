@@ -57,7 +57,7 @@ function FormDialogAgregarCaja({ token, onClose, onDataUpdatedCallback }) {
                 <input type="date" className="form-control" id="fecha" value={fecha} onChange={(e) => setFecha(e.target.value)} />
               </div>
               {/* Botones para confirmar o cerrar el formulario */}
-              <button type="submit" className="btn btn-primary">Confirmar</button>
+              <button type="submit" className="btn btn-primary me-1">Confirmar</button>
               <button type="button" className="btn btn-secondary" onClick={onClose}>Cerrar</button>
             </form>
           </div>

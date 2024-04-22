@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 
 app.use(cors({
-  origin: 'https://proyecto-hermes-app.netlify.app', // El origen de tu aplicación React
+  origin: ['http://localhost:3000', 'https://proyecto-hermes-app.netlify.app'], // El origen de tu aplicación React
   methods: 'GET,POST', 
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
