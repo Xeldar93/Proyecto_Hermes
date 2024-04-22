@@ -65,8 +65,7 @@ function Dashboard() {
       if (success) {
         setIngresos(data.ingresos); // Establece ingresos en el estado
         setGastos(data.gastos); // Establece gastos en el estado
-        fetchCajasData(); // Obtiene datos de cajas
-        fetchFacturasData(); // Obtiene datos de facturas
+       
       } else {
         console.error('Error al obtener datos de ingresos y gastos:', message);
       }
