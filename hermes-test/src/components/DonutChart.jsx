@@ -7,13 +7,16 @@ const DonutChart = ({ ingresos, gastos }) => {
 
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');
+    const totalIngresos = ingresos.total_ingresos || 0;
+    const totalGastos = gastos.total_gastos || 0;
+
     const chartInstance = new Chart(ctx, {
       type: 'doughnut',
       data: {
         labels: ['Gastos', 'Ingresos'],
         datasets: [{
           label: 'Gastos' | 'Ingresos',
-          data: [gastos.total_gastos, ingresos.total_ingresos],
+          data: [totalGastos, totalIngresos], // Usar los totales del mes más reciente
           backgroundColor: [
             'rgba(255, 99, 132, 0.3)',
             'rgba(75, 192, 192, 0.3)',

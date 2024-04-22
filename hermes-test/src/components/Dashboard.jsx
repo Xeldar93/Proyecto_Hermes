@@ -80,14 +80,40 @@ function Dashboard() {
   // Muestra el total de ingresos o gastos
   const mostrarTotal = (items) => {
     if (items.length > 0) {
-      // Ordenamos los elementos por fecha en orden decreciente
-      const sortedItems = [...items].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-      // Seleccionamos el primer elemento (el más reciente)
-      const mostRecentItem = sortedItems[0];
-      return mostRecentItem.total_ingresos || mostRecentItem.total_gastos || 0;
+      // Agrupar los elementos por mes y calcular los totales
+      const agrupadosPorMes = {};
+      items.forEach((item) => {
+        const fecha = new Date(item.fecha);
+        const mes = `${fecha.getMonth() + 1}-${fecha.getFullYear()}`; // Formato: mes-año
+        if (!agrupadosPorMes[mes]) {
+          agrupadosPorMes[mes] = { totalIngresos: 0, totalGastos: 0 };
+        }
+        agrupadosPorMes[mes].totalIngresos += item.total_ingresos || 0;
+        agrupadosPorMes[mes].totalGastos += item.total_gastos || 0;
+      });
+  
+      // Obtener el mes más reciente
+      const meses = Object.keys(agrupadosPorMes).sort((a, b) => {
+        // Convertir las cadenas de fecha en objetos Date
+        const [mesA, añoA] = a.split('-').map(Number);
+        const [mesB, añoB] = b.split('-').map(Number);
+        const fechaA = new Date(añoA, mesA - 1);
+        const fechaB = new Date(añoB, mesB - 1);
+        // Comparar las fechas
+        return fechaB - fechaA;
+      });
+  
+      // Obtener el total del mes más reciente
+      const ultimoMes = meses[0];
+      const totalIngresos = agrupadosPorMes[ultimoMes].totalIngresos;
+      const totalGastos = agrupadosPorMes[ultimoMes].totalGastos;
+  
+      // Devolver el total del mes más reciente
+      return { totalIngresos, totalGastos };
     }
-    return 0;
+    return { totalIngresos: 0, totalGastos: 0 };
   };
+  
   
 
   useEffect(() => {
@@ -137,7 +163,7 @@ function Dashboard() {
 
       <Col xs={12} md={6} lg={5} xxl={4}>
           <div className="position-relative">
-            <DonutChart ingresos={{ total_ingresos: mostrarTotal(ingresos) }} gastos={{ total_gastos: mostrarTotal(gastos) }} />
+            <DonutChart ingresos={mostrarTotal(ingresos)} gastos={mostrarTotal(gastos)} />
           </div>
         </Col>
 
