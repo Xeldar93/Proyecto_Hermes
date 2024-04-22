@@ -80,14 +80,27 @@ function Dashboard() {
   // Muestra el total de ingresos o gastos
   const mostrarTotal = (items) => {
     if (items.length > 0) {
-      // Ordenamos los elementos por fecha en orden decreciente
-      const sortedItems = [...items].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-      // Seleccionamos el primer elemento (el más reciente)
-      const mostRecentItem = sortedItems[0];
-      return mostRecentItem.total_ingresos || mostRecentItem.total_gastos || 0;
+      // Filtramos los elementos para incluir solo los del último mes
+      const fechaActual = new Date();
+      const ultimoMes = fechaActual.getMonth(); // Índice del último mes
+      const ultimoAño = fechaActual.getFullYear(); // Año actual
+      const itemsDelUltimoMes = items.filter(item => {
+        const fecha = new Date(item.fecha);
+        return fecha.getMonth() === ultimoMes && fecha.getFullYear() === ultimoAño;
+      });
+  
+      // Sumamos los totales de ingresos y gastos del último mes
+      let totalIngresos = 0;
+      let totalGastos = 0;
+      itemsDelUltimoMes.forEach(item => {
+        totalIngresos += item.total_ingresos || 0;
+        totalGastos += item.total_gastos || 0;
+      });
+  
+      return { totalIngresos, totalGastos };
     }
-    return 0;
-  };
+    return { totalIngresos: 0, totalGastos: 0 };
+  };  
   
 
   useEffect(() => {
