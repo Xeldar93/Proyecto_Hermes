@@ -65,7 +65,8 @@ function Dashboard() {
       if (success) {
         setIngresos(data.ingresos); // Establece ingresos en el estado
         setGastos(data.gastos); // Establece gastos en el estado
-       
+        fetchCajasData(); // Obtiene datos de cajas
+        fetchFacturasData(); // Obtiene datos de facturas
       } else {
         console.error('Error al obtener datos de ingresos y gastos:', message);
       }
@@ -78,24 +79,24 @@ function Dashboard() {
 
   // Muestra el total de ingresos o gastos
   const mostrarTotal = (items) => {
-    if (items.length > 0) {
-      // Filtrar los elementos del último mes
-      const ultimoMesItems = items.filter(item => {
-        const fechaItem = new Date(item.fecha);
-        const mesActual = new Date().getMonth();
-        const mesItem = fechaItem.getMonth();
-        return mesActual === mesItem;
-      });
-  
-      // Calcular la suma de los totales del último mes
-      const sumaTotal = ultimoMesItems.reduce((total, item) => {
-        return total + (item.total_ingresos || item.total_gastos || 0);
-      }, 0);
-  
-      return sumaTotal;
-    }
-    return 0;
-  };
+  if (items.length > 0) {
+    // Filtrar los elementos del último mes
+    const ultimoMesItems = items.filter(item => {
+      const fechaItem = new Date(item.fecha);
+      const mesActual = new Date().getMonth();
+      const mesItem = fechaItem.getMonth();
+      return mesActual === mesItem;
+    });
+
+    // Calcular la suma de los totales del último mes
+    const sumaTotal = ultimoMesItems.reduce((total, item) => {
+      return total + (item.total_ingresos || item.total_gastos || 0);
+    }, 0);
+
+    return sumaTotal;
+  }
+  return 0;
+};
   
 
   useEffect(() => {
