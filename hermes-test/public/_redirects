@@ -1,6 +1,11 @@
+/login       /login.html       404
 /login       /login.html       200
+/inicio      /inicio.html      404
 /inicio      /inicio.html      200
+/registro    /registro.html    404
 /registro    /registro.html    200
+/dashboard   /dashboard.html   404
 /dashboard   /dashboard.html   200
-/*           /index.html       200
 /*           /index.html       404
+/*           /index.html       200
+
